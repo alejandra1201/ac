@@ -48,14 +48,16 @@ class ComentarioController extends Controller
          * @return \Illuminate\Http\Response
          */
         public function store(Request $request)
-        {
-            $comentario = new Comentario();
-            //crear un comentario
-            $comentario->mensaje = $request->mensaje;
+         {
+              
+         Http::post('http://api.ac.test/v1/comentarios',$request->all());
+        //     $comentario = new Comentario();
+        //     //crear un comentario
+        //     $comentario->mensaje = $request->mensaje;
             
-            $comentario->save();
-            // return view('admin.comentarios.show',compact('comentario'));
-            return redirect()->route('admin.sitios.index')->with('info','El comentario se agrego  con exito');
+        //     $comentario->save();
+        //     // return view('admin.comentarios.show',compact('comentario'));
+           return redirect()->route('admin.comentarios.index')->with('info','El comentario se agrego  con exito');
          }
      
         /**

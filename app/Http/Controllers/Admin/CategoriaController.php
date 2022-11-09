@@ -25,8 +25,11 @@ class CategoriaController extends Controller
         // return view('admin.categorias.index', compact('categorias', 'images'));
 
         $categories = Http::get('http://api.ac.test/v1/categories/');
+
         $categoriesArray = $categories->json();
+
         return  $categoriesArray;
+
         return view('admin.categories.index',compact('categoriesArray'));
 
 
@@ -58,17 +61,14 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $categoria = new Categoria();
-        //crear una categoria
-        $file=$request->file("image_categoria");
-        $nombreArchivo = "jpg_".time().".".$file->guessExtension();
-        $request->file('image_categoria')->storeAs('imagenes',$nombreArchivo );
-        $categoria->create(['nombre_categoria'=>$request->nombre_categoria])->images()->create(['url'=> $nombreArchivo]);
-
-      
-
-
-
+ 
+        Http::post('http://api.ac.test/v1/categories',$request->all());
+        // $categoria = new Categoria();
+        // //crear una categoria
+        // $file=$request->file("image_categoria");
+        // $nombreArchivo = "jpg_".time().".".$file->guessExtension();
+        // $request->file('image_categoria')->storeAs('imagenes',$nombreArchivo );
+        // $categoria->create(['nombre_categoria'=>$request->nombre_categoria])->images()->create(['url'=> $nombreArchivo]);
 
     // $categoria=Categoria::find($temp->imageable_id);
  
@@ -78,7 +78,7 @@ class CategoriaController extends Controller
     // $categoria->images()->create(['url'=>'pdf_1659463230.pdf']);
     
     
-       return redirect()->route('admin.categorias.index',$categoria)->with('info','la categoria se creo con exito');
+    return redirect()->route('admin.categorias.index')->with('info','la categoria se creo con exito');
    }
 
     /**

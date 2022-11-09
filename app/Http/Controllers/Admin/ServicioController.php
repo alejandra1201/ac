@@ -47,8 +47,8 @@ class ServicioController extends Controller
     public function store(Request $request)
     {
 
-        // Http::post('http://api.ac.test/v1/servicios/',$request->all());
-        return $request;
+    Http::post('http://api.ac.test/v1/servicios',$request->all());
+        // return $request;
     // $servicio = new Servicio();
     //        //crear un servicio
     //  $servicio->valorServicio = $request->valorServicio;
@@ -56,7 +56,7 @@ class ServicioController extends Controller
     //  $servicio->save();
 
  
-    // return redirect()->route('admin.servicios.index', $servicio)->with('info','El servicio se creo con exito');
+    return redirect()->route('admin.servicios.index')->with('info','El servicio se creo con exito');
        }
   
 

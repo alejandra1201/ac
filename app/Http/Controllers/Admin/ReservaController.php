@@ -53,18 +53,19 @@ class ReservaController extends Controller
     {
      
 
-
-        $reserva = new Reserva();
-        //crear un sitio
-        $reserva->estado = $request->estado;
-         $reserva->correo = $request->correo;
-        $reserva->fechaReserva = $request->fechaReserva;
-        $reserva->contacto = $request->contacto;
-        $reserva->descripcionReserva= $request->descripcionReserva;
-        $reserva->save();
+  
+        Http::post('http://api.ac.test/v1/reservas',$request->all());
+        // $reserva = new Reserva();
+        // //crear un sitio
+        // $reserva->estado = $request->estado;
+        //  $reserva->correo = $request->correo;
+        // $reserva->fechaReserva = $request->fechaReserva;
+        // $reserva->contacto = $request->contacto;
+        // $reserva->descripcionReserva= $request->descripcionReserva;
+        // $reserva->save();
 
         
-    return redirect()->route('admin.reservas.index',$reserva)->with('info','la reserva se creo con exito');
+    return redirect()->route('admin.reservas.index')->with('info','la reserva se creo con exito');
         
         //  //Datos Categoria
         //  $categoria = Categoria::create($request->all());

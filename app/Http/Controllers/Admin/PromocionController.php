@@ -63,15 +63,18 @@ class PromocionController extends Controller
      */
     public function store(Request $request)
     {
-        $promocion = new Promocion();
 
-        //crear una categoria
-        $file=$request->file("image_promocion");
-        $nombreArchivo = "jpg_".time().".".$file->guessExtension();
-        $request->file('image_promocion')->storeAs('imagenes',$nombreArchivo );
-        $promocion->create(['tipo_promocion'=>$request->tipo_promocion,'descripcionpromocion'=>$request->descripcionpromocion,'descuento'=>$request->descuento,'fechai'=>$request->fechai,'fechaf'=>$request->fechaf])->images()->create(['url'=> $nombreArchivo,]);
+          
+        Http::post('http://api.ac.test/v1/promocions',$request->all());
+        // $promocion = new Promocion();
+
+        // //crear una categoria
+        // $file=$request->file("image_promocion");
+        // $nombreArchivo = "jpg_".time().".".$file->guessExtension();
+        // $request->file('image_promocion')->storeAs('imagenes',$nombreArchivo );
+        // $promocion->create(['tipo_promocion'=>$request->tipo_promocion,'descripcionpromocion'=>$request->descripcionpromocion,'descuento'=>$request->descuento,'fechai'=>$request->fechai,'fechaf'=>$request->fechaf])->images()->create(['url'=> $nombreArchivo,]);
    
-    return redirect()->route('admin.promocions.index',$promocion)->with('info','la promocion se actualizo con exito');
+     return redirect()->route('admin.promocions.index')->with('info','la promocion se actualizo con exito');
     }
 
 

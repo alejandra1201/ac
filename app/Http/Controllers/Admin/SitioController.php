@@ -70,7 +70,10 @@ class SitioController extends Controller
     public function store(Request $request)
     {
      
-         Http::post('http://api.ac.test/v1/sitios/',$request->all());
+
+   Http::post('http://api.ac.test/v1/sitios',$request->all());
+//    $municipioArray = $sitios->json();
+//    return  $sitiosArray;
         //  return $request;
         
         // $sitio = new Sitio();
@@ -81,7 +84,7 @@ class SitioController extends Controller
         // $nombreArchivo = "jpg_".time().".".$file->guessExtension();
         // $request->file('image_sitio')->storeAs('imagenes',$nombreArchivo );
         // $sitio->create(['direccion'=>$request->direccion,'municipio'=>$request->municipio,'Contacto'=>$request->Contacto,'descripcion'=>$request->descripcion,'sitio_web'=>$request->sitio_web,'rutas'=>$request->rutas,'nombre_sitio'=>$request->nombre_sitio])->images()->create(['url'=> $nombreArchivo,]);
-        //  return redirect()->route('admin.sitios.index')->with('info','el sitio se creo con exito');
+         return redirect()->route('admin.sitios.index')->with('info','el sitio se creo con exito');
        
     }
  
